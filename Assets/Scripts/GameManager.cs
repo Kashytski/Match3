@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Levels_Data[] _level;
     void Start()
     {
-        PlayerPrefs.SetInt("level",0);
         if (GameManager.instance != null)
             Destroy(GameManager.instance.gameObject);
         instance = this;
