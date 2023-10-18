@@ -1,22 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-    [SerializeField] private Levels_Data[] _level;
+    public static GameManager Instance;
+    [SerializeField] private Levels_Data[] level;
+    [SerializeField] private int width = 5;
+    [SerializeField] private int height = 8;
+
+    public int Width => width;
+    public int Height => height;
+    
+    [SerializeField] private Camera cameraMain;
+    public Camera CameraMain => cameraMain;
+
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
+
     void Start()
     {
-        if (GameManager.instance != null)
-            Destroy(GameManager.instance.gameObject);
-        instance = this;
+        if (GameManager.Instance != null)
+            Destroy(GameManager.Instance.gameObject);
+        Instance = this;
     }
 
     public Levels_Data GetLevel()
     {
         int levelNum = PlayerPrefs.GetInt("level");
-        return _level[levelNum];
+        return level[levelNum];
     }
 }
